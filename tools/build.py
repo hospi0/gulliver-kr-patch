@@ -346,11 +346,13 @@ def build_etc(tr, etc, log):
         errs += ['%s %s' % (i, e) for e in err]
         if err:
             continue
-        ocodes = [t[1:] for t in raw_tokens_etc(raw) if t[0] == 'k']
+        # 전투 설정 레코드의 적 이름 «이름!»(tools/addenemy.py): «!» 까지가 이름(화면엔 안 나옴) → 떼고 비교, 새 이름 뒤에 다시 붙임
+        bang = raw.endswith(b'!')
+        ocodes = [t[1:] for t in raw_tokens_etc(raw[:-1] if bang else raw) if t[0] == 'k']
         ncodes = [t[1:] for t in toks if t[0] == 'k']
         if ocodes != ncodes:
             errs.append('%s 코드가 원문과 다름: 원문 %s / 번역 %s' % (i, [''.join(c) for c in ocodes], [''.join(c) for c in ncodes])); continue
-        b = encode(toks, lone_n=True)
+        b = encode(toks, lone_n=True) + (b'!' if bang else b'')
         # 실행 파일 이름 표(0x5CB00‥0x5CC00, 상태창 이름 등): 셀 할당이 «폭÷8 버림» 이라 12px 글자 수가 홀수면
         # 다음 글줄(HP)이 이름 마지막 열 셀을 겹쳐 받아 찌꺼기가 생긴다(2026-09-27 실기) → 전각 공백으로 짝수 칸
         b_even = encode(toks + [('c', '　'.encode('cp932'))], lone_n=True) if width([t for t in toks if t[0] != 'n']) % 2 else b

@@ -5,7 +5,7 @@ r"""걸리버 보이 디스크(트랙 1, MODE1/2352) 읽기 — ISO9660 루트 �
 """
 import os, struct, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
-ROM = r'C:\claude\roms\ss\Kuusou Kagaku Sekai Gulliver Boy (Japan) (Disc {0})\Kuusou Kagaku Sekai Gulliver Boy (Japan) (Disc {0}) (Track 1).bin'
+ROM = r'C:\claude\roms\ss\완료\Kuusou Kagaku Sekai Gulliver Boy (Japan) (Disc {0})\Kuusou Kagaku Sekai Gulliver Boy (Japan) (Disc {0}) (Track 1).bin'
 BIG = ('.CPK', 'ADPCM.DAT')
 
 

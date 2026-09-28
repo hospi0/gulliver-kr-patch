@@ -8,7 +8,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 
 VER = 'v0.9'
 XDELTA = r'C:\claude\utils\xdelta.exe'
-ROMS = r'C:\claude\roms\ss'
+ROMS = r'C:\claude\roms\ss\완료'
 OUT = os.path.join(ROOT, 'work', 'out')
 NAME = 'GulliverBoy_KR_' + VER
 TITLE = '걸리버 보이 (공상과학세계 걸리버 보이, 세가 새턴 일본판) 한글 패치 ' + VER
