@@ -6,7 +6,7 @@ r"""걸리버 보이 배포 묶음 — dist/GulliverBoy_KR_<VER>/ : 장마다 �
 import hashlib, os, shutil, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 
-VER = 'v0.9'
+VER = 'v0.91'
 XDELTA = r'C:\claude\utils\xdelta.exe'
 ROMS = r'C:\claude\roms\ss\완료'
 OUT = os.path.join(ROOT, 'work', 'out')
