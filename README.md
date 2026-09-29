@@ -1,6 +1,6 @@
 # 걸리버 보이 (공상과학세계 걸리버 보이, 세가 새턴 일본판) 한글 패치
 
-> **내려받기:** [릴리즈 페이지](https://github.com/hospi0/gulliver-kr-patch/releases/latest) — 최신 v0.91. 적용 방법·원본 MD5 는 패치 묶음의 readme 에 있습니다.
+> **내려받기:** [릴리즈 페이지](https://github.com/hospi0/gulliver-kr-patch/releases/latest) — 최신 v0.92. 적용 방법·원본 MD5 는 패치 묶음의 readme 에 있습니다.
 >
 > 이 저장소에는 도구·작업 문서·자막 번역 표만 있습니다(ROM·빌드 결과물 없음).
 
