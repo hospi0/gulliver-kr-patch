@@ -48,10 +48,16 @@ def load_translations():
     return tr
 
 
+BATTLE = set()      # 전투(BM*) 대사 — 원문 한 줄이면 번역도 한 줄·22칸(전투 창은 1줄, 2026-09-29 실기 «사용했다» 가 창 밖)
+BATTLE_W = 22
+
+
 def load_ids():
     dia = {}; etc = {}
     for ln in list(open(os.path.join(ROOT, 'work', 'trans', 'ids.tsv'), encoding='utf-8'))[1:]:
         c = ln.rstrip('\n').split('\t'); dia[c[0]] = bytes.fromhex(c[1])
+        if all(x.startswith('BM') for x in c[2:]):
+            BATTLE.add(c[0])
     for ln in list(open(os.path.join(ROOT, 'work', 'trans', 'ids_etc.tsv'), encoding='utf-8'))[1:]:
         c = ln.rstrip('\n').split('\t')
         etc[c[0]] = (bytes.fromhex(c[1]), [(x.rsplit(':', 1)[0], int(x.rsplit(':', 1)[1])) for x in c[2:]])
@@ -308,6 +314,8 @@ def build_dialogue(tr, dia, log):
         if choice_shape(ol) != choice_shape(nl):
             errs.append('%s 선택지 줄 구조가 원문과 다름(선택지는 원문처럼 줄 맨 앞·같은 묶음 — 질문 줄 수만 바뀔 수 있음)' % i); continue
         maxw = max(LINE_W, max(width(l) for l in ol)); maxl = max(LINES, len(ol))
+        if i in BATTLE and len(ol) == 1:
+            maxw, maxl = BATTLE_W, 1
         if len(nl) > maxl:
             errs.append('%s 줄 수 %d > %d' % (i, len(nl), maxl)); continue
         over = [(k, width(l)) for k, l in enumerate(nl) if width(l) > maxw]

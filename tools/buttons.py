@@ -21,7 +21,7 @@ OUT = os.path.join(ROOT, 'work', 'kr', 'SYSDATA.BIN')
 
 # (한글, 자기 열의 위 셀 목록, 글자 칸 열 수, 셋째 열을 빈 칸으로 = 빌려주는 버튼)
 B = [(n, [49 + 6 * k, 51 + 6 * k, 53 + 6 * k], 3, False) for k, n in enumerate(
-    '왼손 반지 해제 마법 노래 발명 도구 사용 장착 능력 교환 상태 정리 버림 피비 설정 방어 도망'.split())]
+    '왼손 반지 용수철 마법 노래 발명 도구 사용 장착 능력 교환 상태 정리 버림 피비 설정 방어 도망'.split())]
 LEND = {'사용', '버림', '방어'}
 B = [(n, c, 2 if n in LEND else w, n in LEND) for n, c, w, _ in B]
 B += [('주기', [163, 165], 2, False), ('꺼냄', [167, 169, 171], 3, False), ('맡김', [173, 175], 2, False),
@@ -50,10 +50,10 @@ def label(text, width):
     gs = [glyph(c) for c in text]
     gap = 1 if sum(w for _, w, _ in gs) + len(gs) - 1 <= width else 0
     tw = sum(w for _, w, _ in gs) + gap * (len(gs) - 1)
-    if tw > width:
+    if tw > width + 1:
         sys.exit('⛔%s 폭 %d > %d' % (text, tw, width))
     h = max(h for _, _, h in gs)
-    x = (width - tw) // 2; y = (12 - h + 1) // 2; out = set()
+    x = (width - tw) // 2; y = (12 - h + 1) // 2; out = set()      # 1px 넘치면 x = -1(노란 윗선 열까지, «용수철» 21px)
     for pts, w, gh in gs:
         out |= {(x + px, y + py + (h - gh)) for px, py in pts}
         x += w + gap
